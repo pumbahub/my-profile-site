@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>권대환 - AI 개발자</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .avatar-initials {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .skill-card {
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.2);
+        }
+
+        .project-card {
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(168, 85, 247, 0.15);
+        }
+
+        .email-copy {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .email-copy:hover {
+            color: #10b981;
+            transform: scale(1.05);
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(2, 6, 23, 0.95) 100%);
+                flex-direction: column;
+                padding: 20px;
+                border-top: 1px solid rgba(99, 102, 241, 0.2);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu a {
+                padding: 10px 0;
+                border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+            }
+
+            .nav-menu a:last-child {
+                border-bottom: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-gradient-to-r from-slate-900 via-slate-900 to-slate-900 border-b border-indigo-500/20 backdrop-blur-md">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold gradient-text">권대환</div>
+
+            <button class="menu-toggle text-indigo-400 text-2xl" id="menuToggle">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+
+            <div class="nav-menu md:flex gap-8">
+                <a href="#about" class="text-slate-300 hover:text-indigo-400 transition">About</a>
+                <a href="#skills" class="text-slate-300 hover:text-purple-400 transition">Skills</a>
+                <a href="#projects" class="text-slate-300 hover:text-emerald-400 transition">Projects</a>
+                <a href="#contact" class="text-slate-300 hover:text-indigo-400 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center px-6 py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+        <div class="max-w-2xl text-center fade-in-up">
+            <div class="mb-8 flex justify-center">
+                <div class="avatar-initials">권</div>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 gradient-text">권대환</h1>
+            <p class="text-xl md:text-2xl text-slate-300 mb-4">직장인 · AI 개발자 지망</p>
+            <p class="text-lg text-slate-400 mb-8">인프라 관리자에서 AI 개발자로의 전환을 준비 중입니다.</p>
+
+            <div class="flex gap-4 justify-center flex-wrap">
+                <button onclick="document.getElementById('contact').scrollIntoView()"
+                    class="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition transform hover:scale-105">
+                    연락하기
+                </button>
+                <button id="emailCopyBtn" class="px-8 py-3 border border-purple-500 text-purple-400 hover:bg-purple-500/10 font-semibold rounded-lg transition">
+                    이메일 복사
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 bg-slate-900/50">
+        <div class="max-w-3xl mx-auto fade-in-up">
+            <h2 class="text-4xl font-bold mb-12 text-center">
+                <span class="gradient-text">소개</span>
+            </h2>
+            <div class="space-y-6 text-lg text-slate-300">
+                <p>안녕하세요. 저는 권대환이며, 현재 직장인으로 일하고 있습니다.</p>
+                <p>몇 년간 인프라 관리자로서 서버 관리, 리눅스 시스템 관리, 네트워크 구축 등의 업무를 수행했습니다. 이 경험을 통해 시스템의 동작 원리와 안정성의 중요성을 깊이 있게 이해하게 되었습니다.</p>
+                <p>최근 인공지능과 머신러닝의 급속한 발전에 매력을 느껴 AI 개발자로의 전환을 준비하고 있습니다. 기존의 인프라 지식을 바탕으로 AI 모델의 배포, 최적화, 그리고 실제 프로덕션 환경에서의 운영을 이해하는 전문가가 되고자 합니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-6 bg-slate-950">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold mb-12 text-center">
+                <span class="gradient-text">기술 스택</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- HTML -->
+                <div class="skill-card bg-slate-900 border border-indigo-500/20 rounded-xl p-8 text-center hover:border-indigo-500/50">
+                    <div class="text-5xl mb-4">📄</div>
+                    <h3 class="text-xl font-bold text-indigo-400 mb-2">HTML</h3>
+                    <p class="text-slate-400">웹 페이지 구조 설계</p>
+                </div>
+
+                <!-- CSS -->
+                <div class="skill-card bg-slate-900 border border-purple-500/20 rounded-xl p-8 text-center hover:border-purple-500/50">
+                    <div class="text-5xl mb-4">🎨</div>
+                    <h3 class="text-xl font-bold text-purple-400 mb-2">CSS</h3>
+                    <p class="text-slate-400">반응형 스타일링</p>
+                </div>
+
+                <!-- JavaScript -->
+                <div class="skill-card bg-slate-900 border border-emerald-500/20 rounded-xl p-8 text-center hover:border-emerald-500/50">
+                    <div class="text-5xl mb-4">⚙️</div>
+                    <h3 class="text-xl font-bold text-emerald-400 mb-2">JavaScript</h3>
+                    <p class="text-slate-400">동적 기능 구현</p>
+                </div>
+
+                <!-- Linux -->
+                <div class="skill-card bg-slate-900 border border-green-500/20 rounded-xl p-8 text-center hover:border-green-500/50">
+                    <div class="text-5xl mb-4">🐧</div>
+                    <h3 class="text-xl font-bold text-green-400 mb-2">Linux</h3>
+                    <p class="text-slate-400">시스템 관리</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-6 bg-slate-900/50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold mb-12 text-center">
+                <span class="gradient-text">프로젝트</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card bg-slate-900 border border-indigo-500/20 rounded-xl overflow-hidden hover:border-indigo-500/50">
+                    <div class="h-40 bg-gradient-to-br from-indigo-600 to-indigo-800"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-indigo-400 mb-3">서버 모니터링 대시보드</h3>
+                        <p class="text-slate-400 mb-4">리눅스 서버의 CPU, 메모리, 디스크 사용량을 실시간으로 모니터링하는 웹 기반 대시보드입니다.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 text-sm rounded-full">Linux</span>
+                            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 text-sm rounded-full">Python</span>
+                            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 text-sm rounded-full">JavaScript</span>
+                        </div>
+                        <a href="#" class="text-indigo-400 hover:text-indigo-300 font-semibold">자세히 보기 →</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card bg-slate-900 border border-purple-500/20 rounded-xl overflow-hidden hover:border-purple-500/50">
+                    <div class="h-40 bg-gradient-to-br from-purple-600 to-purple-800"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-purple-400 mb-3">Linux 자동화 스크립트 모음</h3>
+                        <p class="text-slate-400 mb-4">서버 관리를 효율화하는 Bash 및 Python 스크립트 컬렉션입니다.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-purple-500/20 text-purple-300 text-sm rounded-full">Bash</span>
+                            <span class="px-3 py-1 bg-purple-500/20 text-purple-300 text-sm rounded-full">Python</span>
+                            <span class="px-3 py-1 bg-purple-500/20 text-purple-300 text-sm rounded-full">Linux</span>
+                        </div>
+                        <a href="#" class="text-purple-400 hover:text-purple-300 font-semibold">자세히 보기 →</a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card bg-slate-900 border border-emerald-500/20 rounded-xl overflow-hidden hover:border-emerald-500/50">
+                    <div class="h-40 bg-gradient-to-br from-emerald-600 to-green-800"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-emerald-400 mb-3">AI 포트폴리오 프로젝트</h3>
+                        <p class="text-slate-400 mb-4">머신러닝 모델을 활용한 이미지 분류 및 자연어 처리 프로젝트입니다.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 text-sm rounded-full">Python</span>
+                            <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 text-sm rounded-full">TensorFlow</span>
+                            <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 text-sm rounded-full">ML</span>
+                        </div>
+                        <a href="#" class="text-emerald-400 hover:text-emerald-300 font-semibold">자세히 보기 →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 bg-slate-950">
+        <div class="max-w-3xl mx-auto text-center fade-in-up">
+            <h2 class="text-4xl font-bold mb-12">
+                <span class="gradient-text">연락하기</span>
+            </h2>
+
+            <div class="bg-slate-900 border border-indigo-500/20 rounded-xl p-12 hover:border-indigo-500/50 transition">
+                <p class="text-slate-400 mb-6">프로젝트 제안, 협업 기회, 또는 기술 토론이 있으신가요?</p>
+
+                <div class="email-copy py-6 px-8 bg-slate-800/50 rounded-lg border border-indigo-500/30 inline-block mb-8" id="emailDisplay">
+                    <p class="text-sm text-slate-400 mb-2">이메일</p>
+                    <p class="text-2xl font-bold text-indigo-400">daehwan0523@naver.com</p>
+                </div>
+
+                <div class="flex gap-4 justify-center flex-wrap">
+                    <a href="mailto:daehwan0523@naver.com"
+                        class="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition transform hover:scale-105">
+                        이메일 발송
+                    </a>
+                    <a href="https://github.com"
+                        class="px-8 py-3 border border-purple-500 text-purple-400 hover:bg-purple-500/10 font-semibold rounded-lg transition">
+                        GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-indigo-500/20 py-8 px-6">
+        <div class="max-w-5xl mx-auto text-center text-slate-400">
+            <p>© 2024 권대환. All rights reserved.</p>
+            <p class="text-sm mt-2">Made with <span class="text-indigo-400">♥</span> and HTML/CSS/JavaScript</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when link is clicked
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Email copy functionality
+        const emailCopyBtn = document.getElementById('emailCopyBtn');
+        const emailDisplay = document.getElementById('emailDisplay');
+
+        emailCopyBtn.addEventListener('click', () => {
+            const email = 'daehwan0523@naver.com';
+            navigator.clipboard.writeText(email).then(() => {
+                const originalText = emailCopyBtn.textContent;
+                emailCopyBtn.textContent = '복사됨! ✓';
+                emailCopyBtn.classList.add('bg-green-500/20', 'text-green-400', 'border-green-500');
+                emailCopyBtn.classList.remove('border-purple-500', 'text-purple-400', 'hover:bg-purple-500/10');
+
+                setTimeout(() => {
+                    emailCopyBtn.textContent = originalText;
+                    emailCopyBtn.classList.remove('bg-green-500/20', 'text-green-400', 'border-green-500');
+                    emailCopyBtn.classList.add('border-purple-500', 'text-purple-400', 'hover:bg-purple-500/10');
+                }, 2000);
+            });
+        });
+
+        // Email display click to copy
+        emailDisplay.addEventListener('click', () => {
+            const email = 'daehwan0523@naver.com';
+            navigator.clipboard.writeText(email).then(() => {
+                emailDisplay.innerHTML = '<p class="text-sm text-slate-400 mb-2">복사됨!</p><p class="text-2xl font-bold text-green-400">daehwan0523@naver.com</p>';
+                setTimeout(() => {
+                    emailDisplay.innerHTML = '<p class="text-sm text-slate-400 mb-2">이메일</p><p class="text-2xl font-bold text-indigo-400">daehwan0523@naver.com</p>';
+                }, 2000);
+            });
+        });
+
+        // Intersection Observer for fade-in animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            if (section.id !== 'contact') {
+                observer.observe(section);
+            }
+        });
+
+        document.querySelectorAll('.skill-card, .project-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
